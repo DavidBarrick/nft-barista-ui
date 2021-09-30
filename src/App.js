@@ -4,6 +4,8 @@ import openseaLogo from './assets/opensea-logo3.svg';
 import React, { useEffect, useState } from "react";
 import { ethers } from 'ethers';
 import myEpicNft from "./utils/MyEpicNFT.json";
+import Lottie from "react-lottie";
+import animationData from "./assets/coffee-animation2.json";
 
 const TWITTER_HANDLE = 'stevedsimkins';
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
@@ -15,6 +17,7 @@ const CONTRACT_ADDRESS = "0xe4D165ad22650333E5b4881aAfE09a82d5C74DB2";
 const App = () => {
 
   const [currentAccount, setCurrentAccount] = useState("");
+  const [isPlaying, setIsPlaying] = useState(false);
 
   const checkIfWalletIsConnected = async () => {
     const { ethereum } = window;
@@ -107,11 +110,13 @@ const App = () => {
         console.log("Going to pop wallet now to pay gas...")
         let nftTxn = await connectedContract.makeAnEpicNFT();
 
+        setIsPlaying(true);
         console.log("Mining...please wait.")
         await nftTxn.wait();
 
         console.log(`Mined, see transaction: https://rinkeby.etherscan.io/tx/${nftTxn.hash}`);
 
+        setIsPlaying(false);
       } else {
         console.log("Ethereum object doesn't exist!");
       }
@@ -140,6 +145,16 @@ const App = () => {
     <button onClick={askContractToMintNft} className="cta-button connect-wallet-button">Order Drink <br /> ☕️</button>
   )
 
+
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationData,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice"
+    }
+  }
+
   /*
   * Added a conditional render! We don't want to show Connect to Wallet if we're already conencted :).
   */
@@ -149,7 +164,8 @@ const App = () => {
         <div className="header-container">
           <p className="header gradient-text">NFT Barista</p>
           <p className="sub-text">Connect your wallet and get your own unique coffee drink NFT!</p>
-          {currentAccount === "" ? renderNotConnectedContainer() : renderMintUI()}
+          {currentAccount === "" ? renderNotConnectedContainer() : null}
+          {!isPlaying ? renderMintUI() : <Lottie className="lottie" options={defaultOptions} height={300} width={300} />}
         </div>
         <div className="opensea-cta">
           <a href="https://testnets.opensea.io/collection/coffee-bar-v3" target="_blank" rel="noreferrer">
