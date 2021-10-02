@@ -12,12 +12,15 @@ const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 //const OPENSEA_LINK = '';
 //const TOTAL_MINT_COUNT = 50;
 
-const CONTRACT_ADDRESS = "0xC6BC0B1F8bfde26AD7df53B073F83b322DBa26fD";
+//const CONTRACT_ADDRESS = "0xC6BC0B1F8bfde26AD7df53B073F83b322DBa26fD";
+const CONTRACT_ADDRESS = "0xA88479fDb73AC6669ABCc7135aC2173FE88d198c";
 
 const App = () => {
 
   const [currentAccount, setCurrentAccount] = useState("");
   const [isPlaying, setIsPlaying] = useState(false);
+  const [totalNFT, setTotalNFT] = useState(0);
+
 
   const checkIfWalletIsConnected = async () => {
     const { ethereum } = window;
@@ -79,7 +82,7 @@ const App = () => {
         const provider = new ethers.providers.Web3Provider(ethereum);
         const signer = provider.getSigner();
         const connectedContract = new ethers.Contract(CONTRACT_ADDRESS, myEpicNft.abi, signer);
-
+        const getTotalNFT = await connectedContract.getTotalMinted();
         // THIS IS THE MAGIC SAUCE.
         // This will essentially "capture" our event when our contract throws it.
         // If you're familiar with webhooks, it's very similar to that!
@@ -88,6 +91,7 @@ const App = () => {
           alert(`Hey there! We've minted your NFT and sent it to your wallet. It may be blank right now. It can take a max of 10 min to show up on OpenSea. Here's the link: https://testnets.opensea.io/assets/${CONTRACT_ADDRESS}/${tokenId.toNumber()}`)
         });
 
+        setTotalNFT(getTotalNFT);
         console.log("Setup event listener!")
 
       } else {
@@ -127,6 +131,7 @@ const App = () => {
 
   useEffect(() => {
     checkIfWalletIsConnected();
+    setupEventListener();
   }, [])
 
   /*
@@ -174,6 +179,9 @@ const App = () => {
               <p>View on Opensea!</p>
             </button>
           </a>
+        </div>
+        <div>
+          {`${totalNFT}/50`}
         </div>
         <div className="footer-container">
           <img alt="Twitter Logo" className="twitter-logo" src={twitterLogo} />
