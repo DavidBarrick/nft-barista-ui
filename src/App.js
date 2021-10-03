@@ -67,6 +67,7 @@ const App = () => {
       console.log("Connected", accounts[0]);
       setCurrentAccount(accounts[0]);
       setupEventListener();
+      fetchTotalNFT();
     } catch (error) {
       console.log(error)
     }
@@ -124,20 +125,24 @@ const App = () => {
       const { ethereum } = window;
 
       if (ethereum) {
-        const provider = new ethers.providers.Web3Provider(ethereum);
-        const signer = provider.getSigner();
-        const connectedContract = new ethers.Contract(CONTRACT_ADDRESS, myEpicNft.abi, signer);
+        if (totalNFT < 50) {
+          const provider = new ethers.providers.Web3Provider(ethereum);
+          const signer = provider.getSigner();
+          const connectedContract = new ethers.Contract(CONTRACT_ADDRESS, myEpicNft.abi, signer);
 
-        console.log("Going to pop wallet now to pay gas...")
-        let nftTxn = await connectedContract.makeAnEpicNFT();
+          console.log("Going to pop wallet now to pay gas...")
+          let nftTxn = await connectedContract.makeAnEpicNFT();
 
-        setIsPlaying(true);
-        console.log("Mining...please wait.")
-        await nftTxn.wait();
+          setIsPlaying(true);
+          console.log("Mining...please wait.")
+          await nftTxn.wait();
 
-        console.log(`Mined, see transaction: https://rinkeby.etherscan.io/tx/${nftTxn.hash}`);
+          console.log(`Mined, see transaction: https://rinkeby.etherscan.io/tx/${nftTxn.hash}`);
 
-        setIsPlaying(false);
+          setIsPlaying(false);
+        } else {
+          alert("no more NFT's left!");
+        }
       } else {
         console.log("Ethereum object doesn't exist!");
       }
@@ -190,8 +195,8 @@ const App = () => {
           {currentAccount === "" ? renderNotConnectedContainer() : renderMintUI()}
           {!isPlaying ? null :
             <div>
-              <p>Pouring your drink...</p>
               <Lottie className="lottie" options={defaultOptions} height={300} width={300} />
+              <p>Pouring your drink...</p>
             </div>}
         </div>
         <div className="opensea-cta">
