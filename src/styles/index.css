@@ -1,13 +1,22 @@
 body,
 html {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+
+a {
+  font-family: 'Press Start 2P', sans-serif;
+}
+
+button {
+  font-family: 'Press Start 2P', sans-serif;
+}
+
 
 body {
   padding: 0;
-  font-family: -apple-system, Inter, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
-    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Press Start 2P', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #363634;

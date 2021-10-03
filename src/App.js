@@ -167,7 +167,7 @@ const App = () => {
   * We want the "Connect to Wallet" button to dissapear if they've already connected their wallet!
   */
   const renderMintUI = () => (
-    <button onClick={askContractToMintNft} className="cta-button connect-wallet-button">Order Drink <br /> ☕️</button>
+    <button onClick={askContractToMintNft} className="cta-button connect-wallet-button">Order Drink</button>
   )
 
 
@@ -206,8 +206,8 @@ const App = () => {
         </div>
         {currentAccount === "" ? null :
           <div className="totalNFTCounter">
-            <p>NFT's Claimed:</p>
-            <p>
+            <p className="totalNFTLabel">NFT's Claimed:</p>
+            <p className="totalNFTNumber">
               {`${totalNFT}/50`}
             </p>
           </div>

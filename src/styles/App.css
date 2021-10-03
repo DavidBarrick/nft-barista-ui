@@ -24,7 +24,7 @@
 }
 
 .sub-text {
-  font-size: 25px;
+  font-size: 20px;
 }
 
 .gradient-text {
@@ -32,6 +32,7 @@
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  padding: 1rem 0rem;
 }
 
 .cta-button {
@@ -45,6 +46,7 @@
   font-size: 16px;
   font-weight: bold;
   color: white;
+  margin: 2rem 0rem;
 }
 
 .connect-wallet-button {
@@ -100,9 +102,12 @@
   text-decoration: none;
 }
 
-.totalNFTCounter{
-  font-size: 24px;
-  font-weight: bold;
+.totalNFTLabel {
+  font-size: 20px;
+}
+
+.totalNFTNumber{
+  font-size: 40px;
 }
 
 .footer-text {
