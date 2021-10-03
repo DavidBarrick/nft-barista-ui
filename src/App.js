@@ -9,10 +9,8 @@ import animationData from "./assets/coffee-animation2.json";
 
 const TWITTER_HANDLE = 'stevedsimkins';
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
-//const TOTAL_MINT_COUNT = 50;
 
-//const CONTRACT_ADDRESS = "0xC6BC0B1F8bfde26AD7df53B073F83b322DBa26fD";
-const CONTRACT_ADDRESS = "0xc05389bb6e67F0A8CaB1E94584aa09a0DF489dA9";
+const CONTRACT_ADDRESS = "0xB9080CC26F0f773F70d54D4F6ec49349D6162Efb";
 
 const App = () => {
 
