@@ -153,7 +153,6 @@ const App = () => {
 
   useEffect(() => {
     checkIfWalletIsConnected();
-    setupEventListener();
     fetchTotalNFT();
   }, [])
 
