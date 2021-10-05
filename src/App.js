@@ -188,7 +188,7 @@ const App = () => {
       <div className="container">
         <div className="header-container">
           <p className="header gradient-text">NFT Barista</p>
-          <p className="sub-text">Connect your wallet and get your own unique coffee drink NFT!</p>
+          <p className="sub-text">Connect your wallet and get your own coffee drink NFT!</p>
           {currentAccount === "" ? renderNotConnectedContainer() : renderMintUI()}
           {!isPlaying ? null :
             <div>
