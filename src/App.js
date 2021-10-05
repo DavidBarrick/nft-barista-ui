@@ -10,7 +10,7 @@ import animationData from "./assets/coffee-animation2.json";
 const TWITTER_HANDLE = 'stevedsimkins';
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 
-const CONTRACT_ADDRESS = "0xB9080CC26F0f773F70d54D4F6ec49349D6162Efb";
+const CONTRACT_ADDRESS = "0xB511Bf9D4664BFb708a3be6A1D838c79dEA05FCf";
 
 const App = () => {
 
