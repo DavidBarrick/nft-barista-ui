@@ -189,13 +189,14 @@ const App = () => {
         <div className="header-container">
           <p className="header gradient-text">NFT Barista</p>
           <p className="sub-text">Connect your wallet and get your own coffee drink NFT!</p>
-          {currentAccount === "" ? renderNotConnectedContainer() : null}
-          {isPlaying ? null : renderMintUI()}
-          {!isPlaying ? null :
-            <div>
-              <Lottie className="lottie" options={defaultOptions} height={300} width={300} />
-              <p>Pouring your drink...</p>
-            </div>}
+          {currentAccount === "" ? renderNotConnectedContainer() : (
+
+            !isPlaying ? renderMintUI() :
+              <div>
+                <Lottie className="lottie" options={defaultOptions} height={300} width={300} />
+                <p>Pouring your drink...</p>
+              </div>
+          )}
         </div>
         <div className="opensea-cta">
           <a href={"https://testnets.opensea.io/assets" + openseaLink} target="_blank" rel="noreferrer">
