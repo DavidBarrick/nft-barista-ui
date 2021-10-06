@@ -189,7 +189,8 @@ const App = () => {
         <div className="header-container">
           <p className="header gradient-text">NFT Barista</p>
           <p className="sub-text">Connect your wallet and get your own coffee drink NFT!</p>
-          {currentAccount === "" ? renderNotConnectedContainer() : renderMintUI()}
+          {currentAccount === "" ? renderNotConnectedContainer() : null}
+          {isPlaying ? null : renderMintUI()}
           {!isPlaying ? null :
             <div>
               <Lottie className="lottie" options={defaultOptions} height={300} width={300} />
